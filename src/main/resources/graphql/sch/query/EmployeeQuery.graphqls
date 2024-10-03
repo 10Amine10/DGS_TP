@@ -1,0 +1,19 @@
+type Query {
+    findEmployeeById(employeeId: String): Employee
+
+}
+
+type Mutation {
+    addEmployee(fullname: String!, gender: Gender!, addressList: [AddressInput]!, department: DepartmentInput!): Employee
+}
+
+input AddressInput {
+    state: String!
+    country: String!
+    pinCode: String!
+}
+
+input DepartmentInput {
+    _id: ID
+    departmentName: String
+}

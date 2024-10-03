@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: graphql
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/dgs
+
+
+dgs:
+  graphql:
+    schema-locations:
+      - "classpath*:graphql/**/*.graphql*"

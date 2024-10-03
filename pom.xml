@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.10</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.dgs</groupId>
+	<artifactId>dgs-spring</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>graphql</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.netflix.graphql.dgs</groupId>
+				<artifactId>graphql-dgs-platform-dependencies</artifactId>
+				<!-- The DGS BOM/platform dependency. This is the only place you set version of DGS -->
+
+				<version>9.1.2
+				</version> <!-- Replace [LATEST_VERSION] with the [latest available version](https://mvnrepository.com/artifact/com.netflix.graphql.dgs/graphql-dgs-platform-dependencies) -->
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.graphql.dgs</groupId>
+			<artifactId>graphql-dgs-spring-boot-starter</artifactId>
+			<version>8.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+<!--		<dependency>-->
+<!--&lt;!&ndash;			<groupId>com.netflix.graphql.dgs</groupId>&ndash;&gt;   C PA FONCTIONABLE-->
+<!--			<artifactId>graphql-dgs-spring-graphql-starter</artifactId>-->
+<!--		</dependency>-->
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>io.github.deweyjose</groupId>
+				<artifactId>graphqlcodegen-maven-plugin</artifactId>
+				<version>1.61.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<subPackageNameDatafetchers>graph.query</subPackageNameDatafetchers>
+					<subPackageNameTypes>graph.shema</subPackageNameTypes>
+					<schemaPaths>
+						<param>src/main/resources/graphql/sch/schema/Employee.graphqls</param>
+						<param>src/main/resources/graphql/sch/schema/Address.graphqls</param>
+						<param>src/main/resources/graphql/sch/schema/AddressType.graphqls</param>
+						<param>src/main/resources/graphql/sch/schema/Gender.graphqls</param>
+						<param>src/main/resources/graphql/sch/schema/Department.graphqls</param>
+						<param>src/main/resources/graphql/sch/query/EmployeeQuery.graphqls</param>
+
+					</schemaPaths>
+					<packageName>com.dgs.graphql</packageName>
+					<outputDir>${project.build.directory}</outputDir>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

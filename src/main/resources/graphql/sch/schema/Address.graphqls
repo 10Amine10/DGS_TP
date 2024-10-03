@@ -1,0 +1,8 @@
+type Address {
+    state: String
+    country: String
+    addressLine1: String
+    addressLine2: String
+    pinCode: String
+    addressType: AddressType
+}

@@ -1,0 +1,4 @@
+type Department {
+    _id: ID
+    departmentName: String
+}
